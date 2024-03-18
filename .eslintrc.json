@@ -1,0 +1,20 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "standard",
+    "plugin:tailwindCSS/recommended",
+    "prettier"
+  ]
+}
+
+// {
+// "editor.defaultFormatter": "esbenp. prettier-vscode",
+// "editor.formatOnSave": true,
+// "editor.codeActionsOnSave": {
+// "source.fixAll.eslint": true,
+// "source.addMissingTmports": true
+// },
+
+// "[typescriptreact]": {
+
+// "editor.defaultFormatter": "esbenp.prettier-vscode"}}
