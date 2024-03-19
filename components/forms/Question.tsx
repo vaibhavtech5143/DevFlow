@@ -22,7 +22,7 @@ import Image from 'next/image';
 
 
 
-const type:any = "createButton";
+const type:any = "create";
 const Question = () => {
   const editorRef = useRef<Editor>(null);
   const [isSubmitting,setIsSubmitting] = useState(false);
