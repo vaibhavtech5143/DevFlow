@@ -10,7 +10,7 @@ import Link from "next/link";
  // Import the QuestionProps type from the appropriate file
 
 import { QuestionProps } from "@/types";
-const questions: QuestionProps[] = [ // Define the type of questions as an array of QuestionProps
+const questions: QuestionProps[] = [
   {
     _id: "1",
     title: "What are the common cybersecurity threats in modern networks?",
@@ -19,7 +19,7 @@ const questions: QuestionProps[] = [ // Define the type of questions as an array
     upvotes: 20344444445,
     views: 154444444450,
     answers: [],
-    createdAt: "2024-03-10T08:00:00",
+    createdAt: new Date("2024-03-10T08:00:00"),
   },
   {
     _id: "2",
@@ -29,7 +29,7 @@ const questions: QuestionProps[] = [ // Define the type of questions as an array
     upvotes: 15,
     views: 120,
     answers: [],
-    createdAt: "2024-03-10T08:00:00",
+    createdAt: new Date("2024-03-10T08:00:00"),
   },
   {
     _id: "3",
@@ -39,7 +39,7 @@ const questions: QuestionProps[] = [ // Define the type of questions as an array
     upvotes: 25,
     views: 180,
     answers: [],
-    createdAt: "2024-03-10T08:00:00",
+    createdAt: new Date("2024-03-10T08:00:00"),
   },
   {
     _id: "4",
@@ -49,7 +49,7 @@ const questions: QuestionProps[] = [ // Define the type of questions as an array
     upvotes: 18,
     views: 130,
     answers: [],
-    createdAt: "2024-03-10T08:00:00",
+    createdAt: new Date("2024-03-10T08:00:00"),
   },
   {
     _id: "5",
@@ -59,7 +59,7 @@ const questions: QuestionProps[] = [ // Define the type of questions as an array
     upvotes: 100000002,
     views: 114585547850,
     answers: [],
-    createdAt: "2024-03-10T08:00:00",
+    createdAt: new Date("2024-03-10T08:00:00"),
   },
   {
     _id: "6",
@@ -69,7 +69,7 @@ const questions: QuestionProps[] = [ // Define the type of questions as an array
     upvotes: 10,
     views: 100,
     answers: [],
-    createdAt: "2024-03-10T08:00:00",
+    createdAt: new Date("2024-03-10T08:00:00"),
   },
 ];
 
