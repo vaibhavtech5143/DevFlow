@@ -1,6 +1,6 @@
-import Image from 'next/image'
+import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react'
+import React from 'react';
 
 interface MetricProps {
   imgUrl: string;
@@ -11,7 +11,8 @@ interface MetricProps {
   href?: string;
   isAuthor?: boolean;
 }
-const Metric = ({ imgUrl, alt, textStyles, value, title, href, isAuthor }) => {
+
+const Metric: React.FC<MetricProps> = ({ imgUrl, alt, textStyles, value, title, href, isAuthor }) => {
   const metricContent = (
     <>
       <Image
@@ -19,30 +20,32 @@ const Metric = ({ imgUrl, alt, textStyles, value, title, href, isAuthor }) => {
         width={16}
         height={16}
         alt={alt}
-        className={`object-contain ${href ? "rounded-full" : ""}`}
+        className={`object-contain ${href ? 'rounded-full' : ''}`}
       />
       <p className={`${textStyles} flex items-center gap-1`}>
         {value}
-        <span className={`small-regular line-clamp-1 ${isAuthor ? "max-sm:hidden" : ""}`}>
+        <span className={`small-regular line-clamp-1 ${isAuthor ? 'max-sm:hidden' : ''}`}>
           {title}
         </span>
       </p>
     </>
   );
 
-  if(href){
-    return(
-      <Link href={href} className='flex-center gap-1'>
-{metricContent}
-
+  if (href) {
+    return (
+      <Link href={href} passHref>
+        <a className='flex-center gap-1'>
+          {metricContent}
+        </a>
       </Link>
-    )
+    );
   }
+  
   return (
     <div className="flex-center flex-wrap gap-1">
       {metricContent}
     </div>
   );
-}
+};
 
 export default Metric;
