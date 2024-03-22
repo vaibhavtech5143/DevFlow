@@ -7,7 +7,10 @@ import { Button } from "@/components/ui/button";
 import { HomePageFilters } from "@/constants/filter";
 import Link from "next/link";
 
-const questions: QuestionProps[] = [
+ // Import the QuestionProps type from the appropriate file
+
+import { QuestionProps } from "@/types";
+const questions: QuestionProps[] = [ // Define the type of questions as an array of QuestionProps
   {
     _id: "1",
     title: "What are the common cybersecurity threats in modern networks?",
