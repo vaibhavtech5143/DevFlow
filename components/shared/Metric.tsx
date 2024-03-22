@@ -3,13 +3,13 @@ import Link from 'next/link';
 import React from 'react'
 
 interface MetricProps {
-  imgUrl: string,
-  alt?: string,
-  value: string | number,
-  title: string,
-  href?: string,
-  textStyles?: string,
-  isAuthor?: boolean
+  imgUrl: string;
+  alt: string;
+  textStyles?: string;
+  value: number | string;
+  title: string;
+  href?: string;
+  isAuthor?: boolean;
 }
 const Metric = ({ imgUrl, alt, textStyles, value, title, href, isAuthor }) => {
   const metricContent = (
