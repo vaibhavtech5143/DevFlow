@@ -44,24 +44,21 @@ const QuestionCards = ({ _id, title, tags, author, upvotes, views, answer, creat
         isAuthor
         textStyles="body-medium text-dark400_light700"
         />
-        <Metric imgUrl="/assets/icons/like.svg" 
+        <Metric imgUrl="/assets/icons/like.svg"
         alt="Upvotes"
         value={formatLargeNumber(upvotes)}
         title="Votes"
-        textStyles="small-medium text-dark400_light800"
-        />
-        <Metric imgUrl="/assets/icons/message.svg" 
+        textStyles="small-medium text-dark400_light800" href={undefined} isAuthor={undefined}        />
+        <Metric imgUrl="/assets/icons/message.svg"
         alt="message"
         value={formatLargeNumber(answer.length)}
         title="Answers"
-        textStyles="small-medium text-dark400_light800"
-        />
-        <Metric imgUrl="/assets/icons/eye.svg" 
+        textStyles="small-medium text-dark400_light800" href={undefined} isAuthor={undefined}        />
+        <Metric imgUrl="/assets/icons/eye.svg"
         alt="eye"
         value={formatLargeNumber(views)}
         title="Views"
-        textStyles="small-medium text-dark400_light800"
-        />
+        textStyles="small-medium text-dark400_light800" href={undefined} isAuthor={undefined}        />
       </div>
     </div>
   )

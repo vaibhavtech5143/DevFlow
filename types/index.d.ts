@@ -53,7 +53,7 @@ export interface QuestionProps {
     upvotes: number;
     views: number;
     answers: any[]; // Assuming answers can be of any type
-    createdAt: string;
+    createdAt: Date;
   }
 
 export type BadgeCriteriaType = keyof typeof BADGE_CRITERIA;
