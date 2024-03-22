@@ -14,7 +14,7 @@ interface QuestionProps {
   answer: Array<object>;
   createAt: Date;
 }
-const QuestionCards = ({ _id, title, tags, author, upvotes, views, answers, createdAt }: QuestionProps) => {
+const QuestionCards = ({ _id, title, tags, author, upvotes, views, answer, createAt }: QuestionProps) => {
   return (
     <div className='card-wrapper rounded-[10px] p-9 sm:px-11'>
       <div className="flex flex-col-reverse items-start justify-between gap-5 sm:flex-row">
@@ -39,7 +39,7 @@ const QuestionCards = ({ _id, title, tags, author, upvotes, views, answers, crea
         <Metric imgUrl={"/assets/icons/avatar.svg"}
         alt="user"
         value={author.name}
-        title={` - asked ${getTimestamp(createdAt)}`}
+        title={` - asked ${getTimestamp(createAt)}`}
         href={`/profile/${author._id}`}
         isAuthor
         textStyles="body-medium text-dark400_light700"
@@ -52,7 +52,7 @@ const QuestionCards = ({ _id, title, tags, author, upvotes, views, answers, crea
         />
         <Metric imgUrl="/assets/icons/message.svg" 
         alt="message"
-        value={formatLargeNumber(answers.length)}
+        value={formatLargeNumber(answer.length)}
         title="Answers"
         textStyles="small-medium text-dark400_light800"
         />

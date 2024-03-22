@@ -118,8 +118,8 @@ export default function Home() {
             author={questions.author}
             upvotes={questions.upvotes}
             views={questions.views}
-            answers={questions.answers}
-            createdAt={questions.createdAt}
+            answer={questions.answers}
+            createAt={questions.createdAt}
             /></div>
           )) : <NoResult title={"There are No Quest0on To Show"}
 

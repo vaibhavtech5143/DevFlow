@@ -52,7 +52,7 @@ export interface QuestionProps {
     author: { _id: string; name: string; picture: string };
     upvotes: number;
     views: number;
-    answer: any[]; // Assuming answers can be of any type
+    answers: any[]; // Assuming answers can be of any type
     createdAt: string;
   }
 
