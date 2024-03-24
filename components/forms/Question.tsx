@@ -4,6 +4,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { string, z } from "zod"
+import { useRouter,usePathname } from 'next/navigation';
 
 import { Button } from "@/components/ui/button"
 import {
@@ -21,10 +22,17 @@ import { Badge } from '../ui/badge';
 import Image from 'next/image';
 import { createQuestion } from '@/lib/actions/question.action';
 
-
+interface Props{
+  mongoUserId:string;
+}
 
 const type: string = "create";
-const Question = () => {
+
+
+// component  starts here 
+const Question = ({mongoUserId}:Props) => {
+  const router = useRouter();
+  const pathname = usePathname();
   const editorRef = useRef<Editor>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -41,10 +49,31 @@ const Question = () => {
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof QuestionSchema>) {
-    setIsSubmitting(true)
-    await createQuestion({})
-    console.log(values)
-  }
+    setIsSubmitting(true);
+    try {
+        await createQuestion({
+            title: values.title,
+            content: values.explanation,
+            tags: values.tags,
+            author: JSON.parse(mongoUserId)
+        });
+      console.log("value title",values.title);
+      console.log("value description",values.explanation);
+      console.log("value tags",values.tags);
+      console.log("value author",JSON.parse(mongoUserId));
+      
+      
+        router.push("/");
+        
+    } catch (error) {
+        // Handle any errors that occur during the creation of the question
+        console.error("An error occurred:", error);
+        // You can also set an error state or display an error message to the user
+    } finally {
+        // This block will be executed regardless of whether an error occurred or not
+        setIsSubmitting(false);
+    }
+}
 
 
 
@@ -96,47 +125,48 @@ const Question = () => {
 
           )}
         />
-        <FormField
-          control={form.control}
-          name="explanation"
-          render={({ field }) => (
-            <FormItem className="flex w-full flex-col">
-              <FormLabel className="paragraph-semibold text-dark400_light800">Detail Explanation<span className="text-primary-500">*</span></FormLabel>
-              <FormControl className="mt-3.5">
-                <Editor apiKey={process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY}
-                  onInit={(event, editor) => {
-                    // @ts-ignore
-
-                    editorRef.current = editor;
-
-                  }}
-
-                  onBlur={field.onBlur}
-                  onEditorChange={(content) => { field.onChange = (content) }}
-                  initialValue=""
-                  init={{
-                    height: 350,
-                    menubar: true,
-                    plugins: [
-                      'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'anchor',
-                      'searchreplace', 'visualblocks', 'codesample', 'fullscreen',
-                      'insertdatetime', 'media', 'table', 'paste', 'code', 'help', 'wordcount'
-                    ],
-                    toolbar: 'undo redo |' +
-                      'codesample | bold italic forecolor | alignleft aligncenter | codesample ' +
-                      'alignright alignjustify | bullist numlist ',
-                    content_style: 'body { font-family:Inter,Arial;font-size:16px }'
-                  }}
-                />
-              </FormControl>
-              <FormDescription className="body-regular mt-2.5 text-light-500">
-                Introduce the problem and expand on what you put in the title.Minimum 20 characters.
-              </FormDescription>
-              <FormMessage className="text-red-500" />
-            </FormItem>
-
-          )}
+    <FormField
+  control={form.control}
+  name="explanation"
+  render={({ field }) => (
+    <FormItem className="flex w-full flex-col">
+      <FormLabel className="paragraph-semibold text-dark400_light800">Detail Explanation<span className="text-primary-500">*</span></FormLabel>
+      <FormControl className="mt-3.5">
+        <Editor
+          apiKey={process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY}
+          onInit={(event, editor) => {
+            // @ts-ignore
+            editorRef.current = editor;
+          }}
+          onBlur={field.onBlur}
+          onEditorChange={(content) => {
+            // Use setValue to update the field value
+            form.setValue('explanation', content);
+          }}
+          initialValue=""
+          init={{
+            height: 350,
+            menubar: true,
+            plugins: [
+              'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'anchor',
+              'searchreplace', 'visualblocks', 'codesample', 'fullscreen',
+              'insertdatetime', 'media', 'table', 'paste', 'code', 'help', 'wordcount'
+            ],
+            toolbar: 'undo redo |' +
+              'codesample | bold italic forecolor | alignleft aligncenter | codesample ' +
+              'alignright alignjustify | bullist numlist ',
+            content_style: 'body { font-family:Inter,Arial;font-size:16px }'
+          }}
         />
+      </FormControl>
+      <FormDescription className="body-regular mt-2.5 text-light-500">
+        Introduce the problem and expand on what you put in the title. Minimum 20 characters.
+      </FormDescription>
+      <FormMessage className="text-red-500" />
+    </FormItem>
+  )}
+/>
+
         <FormField
           control={form.control}
           name="tags"
