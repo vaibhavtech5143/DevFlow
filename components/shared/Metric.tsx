@@ -34,9 +34,9 @@ const Metric: React.FC<MetricProps> = ({ imgUrl, alt, textStyles, value, title, 
   if (href) {
     return (
       <Link href={href} passHref>
-        <a className='flex-center gap-1'>
+        <span className='flex-center gap-1'>
           {metricContent}
-        </a>
+        </span>
       </Link>
     );
   }

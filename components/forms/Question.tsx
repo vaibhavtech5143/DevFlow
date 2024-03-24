@@ -19,13 +19,14 @@ import { Input } from "@/components/ui/input"
 import { QuestionSchema } from "@/lib/validation"
 import { Badge } from '../ui/badge';
 import Image from 'next/image';
+import { createQuestion } from '@/lib/actions/question.action';
 
 
 
-const type:any = "create";
+const type: string = "create";
 const Question = () => {
   const editorRef = useRef<Editor>(null);
-  const [isSubmitting,setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
 
   // 1. Define your form.
@@ -39,8 +40,9 @@ const Question = () => {
   })
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof QuestionSchema>) {
- setIsSubmitting(true)
+  async function onSubmit(values: z.infer<typeof QuestionSchema>) {
+    setIsSubmitting(true)
+    await createQuestion({})
     console.log(values)
   }
 
@@ -106,7 +108,11 @@ const Question = () => {
                     // @ts-ignore
 
                     editorRef.current = editor;
+
                   }}
+
+                  onBlur={field.onBlur}
+                  onEditorChange={(content) => { field.onChange = (content) }}
                   initialValue=""
                   init={{
                     height: 350,
@@ -170,10 +176,10 @@ const Question = () => {
         <Button type="submit" className='primary-gradient w-fit !text-light-900}' disabled={isSubmitting}>
 
 
-          {isSubmitting?(<>
-          {type==='edit'?"Editing...":"Posting..."}
-          </>):(<>
-          {type==='edit'? "Edit Question" : "Ask a Question"}</>)}
+          {isSubmitting ? (<>
+            {type === 'edit' ? "Editing..." : "Posting..."}
+          </>) : (<>
+            {type === 'edit' ? "Edit Question" : "Ask a Question"}</>)}
         </Button>
       </form>
     </Form>
