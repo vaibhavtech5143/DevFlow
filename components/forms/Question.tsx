@@ -52,15 +52,16 @@ const Question = ({mongoUserId}:Props) => {
     setIsSubmitting(true);
     try {
         await createQuestion({
-            title: values.title,
-            content: values.explanation,
-            tags: values.tags,
-            author: JSON.parse(mongoUserId)
+          title: values.title,
+          content: values.explanation,
+          tags: values.tags,
+          author: JSON.parse(mongoUserId),
+          path: pathname
         });
-      console.log("value title",values.title);
-      console.log("value description",values.explanation);
-      console.log("value tags",values.tags);
-      console.log("value author",JSON.parse(mongoUserId));
+      // console.log("value title",values.title);
+      // console.log("value description",values.explanation);
+      // console.log("value tags",values.tags);
+      // console.log("value author",JSON.parse(mongoUserId));
       
       
         router.push("/");
