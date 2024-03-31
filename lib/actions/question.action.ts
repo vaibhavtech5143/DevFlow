@@ -30,8 +30,7 @@ export async function getQuestion( params:GetQuestionsParams){
        
     } 
     catch (error) {
-        console.log(error);
-        throw error;
+       
     }
 }
 
