@@ -46,6 +46,8 @@ export interface BadgeCounts {
 }
 
 export interface QuestionProps {
+    [x: string]: any;
+    length: number;
     _id: string;
     title: string;
     tags: { _id: string; name: string }[];

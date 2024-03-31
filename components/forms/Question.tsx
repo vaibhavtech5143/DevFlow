@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { string, z } from "zod"
+import {  z } from "zod"
 import { useRouter,usePathname } from 'next/navigation';
 
 import { Button } from "@/components/ui/button"
