@@ -106,6 +106,10 @@ const Question = ({mongoUserId}:Props) => {
     const newTags = field.value.filter((t: string) => t !== tag);
     form.setValue('tags', newTags);
   }
+
+
+  const apiKey = process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY;
+  
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="flex w-full flex-col gap-10">
@@ -134,7 +138,7 @@ const Question = ({mongoUserId}:Props) => {
       <FormLabel className="paragraph-semibold text-dark400_light800">Detail Explanation<span className="text-primary-500">*</span></FormLabel>
       <FormControl className="mt-3.5">
         <Editor
-          apiKey={process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY}
+          apiKey={apiKey}
           onInit={(event, editor) => {
             // @ts-ignore
             editorRef.current = editor;
