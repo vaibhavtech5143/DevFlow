@@ -17,8 +17,8 @@ import { QuestionProps } from "@/types";
 
 export default async function  Home() {
 
-const results = await getQuestion()
-  console.log("resp",results);
+const results = await getQuestion({})
+  // console.log("resp",results);
 
   return (
     <>
