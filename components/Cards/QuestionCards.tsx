@@ -6,6 +6,7 @@ import { formatLargeNumber, getTimestamp } from '@/lib/utils';
 
 interface QuestionProps {
   _id: string;
+  imageUrl:string,
   title: string;
   tags: { _id: string; name: string } [];
   author: { _id: string; name: string; picture: string };
@@ -16,6 +17,7 @@ interface QuestionProps {
 }
 const QuestionCards = ({ _id, title, tags, author, upvotes, views, answer, createAt }: QuestionProps) => {
   return (
+    <>
     <div className='card-wrapper rounded-[10px] p-9 sm:px-11'>
       <div className="flex flex-col-reverse items-start justify-between gap-5 sm:flex-row">
 <div>
@@ -36,7 +38,7 @@ const QuestionCards = ({ _id, title, tags, author, upvotes, views, answer, creat
         ))}
       </div>
       <div className="flex-between mt-6 w-full flex-wrap gap-3">
-        <Metric imgUrl={"/assets/icons/avatar.svg"}
+        <Metric imgUrl={author.picture}
         alt="user"
         value={author.name}
         title={` - asked ${getTimestamp(createAt)}`}
@@ -61,6 +63,8 @@ const QuestionCards = ({ _id, title, tags, author, upvotes, views, answer, creat
         textStyles="small-medium text-dark400_light800" href={undefined} isAuthor={undefined}        />
       </div>
     </div>
+    <h1>Hello</h1>
+    </>
   )
 }
 

@@ -1,3 +1,5 @@
+
+
 import QuestionCards from "@/components/Cards/QuestionCards";
 import HomeFilters from "@/components/Home/HomeFilters";
 import Filter from "@/components/shared/Filter";
@@ -13,12 +15,11 @@ import Link from "next/link";
 import { getQuestion } from "@/lib/actions/question.action";
 import { QuestionProps } from "@/types";
 
-
 export default async function  Home() {
 
-  const result:QuestionProps = await getQuestion({});
-  // console.log("resp",result);
-  
+const results = await getQuestion()
+  console.log("resp",results);
+
   return (
     <>
       <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
@@ -46,31 +47,34 @@ export default async function  Home() {
       </div>
       <HomeFilters />
       <div className="mt-10 flex w-full flex-col gap-6">
-        {result?.length > 0 ? (
-          result.map((question: QuestionProps) => (
-            <div key={question._id}>
-              <QuestionCards
-                key={question._id}
-                _id={question._id}
-                title={question.title}
-                tags={question.tags}
-                author={question.author}
-                upvotes={question.upvotes}
-                views={question.views}
-                answer={question.answers}
-                createAt={question.createdAt}
-              />
-            </div>
-          ))
-        ) : (
-          <NoResult
-            title={"There are No Questions To Show"}
-            description={"Be The First One To Break The Silence And Ask A Question."}
-            url="/ask-question"
-            LinkTitle={"Ask A Question"}
-          />
-        )}
-      </div>
-    </>
+  {results.questions.length > 0 ? (
+    results.questions.map((question) => (
+      <QuestionCards
+        key={question._id}
+        _id={question._id}
+        title={question.title}
+        imageUrl={question.author.imageUrl}
+        tags={question.tags}
+        author={question.author}
+        upvotes={question.upvotes}
+        views={question.views}
+        answer={question.answers}
+        createAt={question.createdAt}
+      />
+    ))
+  ) : (
+    <NoResult
+      title={"There are No Questions To Show"}
+      description={"Be The First One To Break The Silence And Ask A Question."}
+      url="/ask-question"
+      LinkTitle={"Ask A Question"}
+    />
+  )}
+</div>
+
+
+
+
+  </>
   );
 }

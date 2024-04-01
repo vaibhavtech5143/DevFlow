@@ -1,5 +1,6 @@
 
-import { IUser } from "@/mongodb";
+import { IUser } from "@/models/user.model";
+import { Schema } from "mongoose";
 
 export interface CreateAnswerParams {
     content: string;
@@ -61,7 +62,7 @@ export interface CreateQuestionParams {
     title: string;
     content: string;
     tags: string[];
-    author: string | IUser; // Changed Schema.Types.ObjectId to string
+    author: Schema.Types.ObjectId | IUser; // Changed Schema.Types.ObjectId to string
     path: string;
 }
 

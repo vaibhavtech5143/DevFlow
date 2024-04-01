@@ -15,9 +15,11 @@ import { revalidatePath } from "next/cache";
 export async function getQuestion( params:GetQuestionsParams){
     try {
         connectToDatabase();
-        const questions = await Question.findOne({}).populate({path:'tags',model:Tag}).populate({path:'author',model:User}).sort({createdAt:-1});
+
+
+        const questions = await Question.find({}).populate({path:'tags',model:Tag}).populate({path:'author',model:User}).sort({createdAt:-1});
         console.log("Question Action",questions);
-        return questions;
+        return {questions};
 
         // above and below are the same code 
 
@@ -30,6 +32,9 @@ export async function getQuestion( params:GetQuestionsParams){
        
     } 
     catch (error) {
+        console.log(error);
+        throw error;
+        
        
     }
 }
