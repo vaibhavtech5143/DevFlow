@@ -63,7 +63,6 @@ const QuestionCards = ({ _id, title, tags, author, upvotes, views, answer, creat
         textStyles="small-medium text-dark400_light800" href={undefined} isAuthor={undefined}        />
       </div>
     </div>
-    <h1>Hello</h1>
     </>
   )
 }

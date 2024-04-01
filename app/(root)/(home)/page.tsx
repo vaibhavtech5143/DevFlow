@@ -13,7 +13,6 @@ import Link from "next/link";
 
 
 import { getQuestion } from "@/lib/actions/question.action";
-import { QuestionProps } from "@/types";
 
 export default async function  Home() {
 
