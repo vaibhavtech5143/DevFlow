@@ -3,7 +3,7 @@ import Navbar from '@/components/shared/Navbar/Navbar'
 import RightSidebar from '@/components/shared/RightSidebar'
 import React from 'react'
 
-const Layout = ({children}:{children:React.ReactNode}) => {
+const Layout = ({children}:{children:React.ReactNode} ) => {
   return (
     <main className=' background-light850_dark100 relative'>
         
