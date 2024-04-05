@@ -1,43 +1,49 @@
-import UserCard from '@/components/Cards/UserCard'
-import Filter from '@/components/shared/Filter'
-import LocalSearch from '@/components/shared/search/LocalSearch'
-import { UserFilters } from '@/constants/filter'
-import { getAllUsers } from '@/lib/actions/user.action'
-import Link from 'next/link'
+import UserCard from "@/components/Cards/UserCard";
+import Filter from "@/components/shared/Filter";
+import LocalSearch from "@/components/shared/search/LocalSearch";
+import { UserFilters } from "@/constants/filter";
+import { getAllUsers } from "@/lib/actions/user.action";
+import Link from "next/link";
 
 const CommunityPage = async () => {
-    const result = await getAllUsers({})
-    return (
-        <><h1 className="h1-bold text-dark100_light900">All Users</h1>
+  const result = await getAllUsers({});
 
+  return (
+    <>
+      <h1 className="h1-bold text-dark100_light900">All Users</h1>
 
-            <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
-                <LocalSearch
-                    route="/community"
-                    iconPosition="left"
-                    imgSrc="/assets/icons/search.svg"
-                    placeholder="Search for Amazing geeks..."
-                    otherClasses="flex-1" />
+      <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
+        <LocalSearch
+          route="/community"
+          iconPosition="left"
+          imgSrc="/assets/icons/search.svg"
+          placeholder="Search for Amazing geeks..."
+          otherClasses="flex-1"
+        />
 
-                <Filter
-                    filters={UserFilters}
-                    otherClasses="min-h-[56px] sm:min-w-[170px]"
-                />
-            </div>
+        <Filter
+          filters={UserFilters}
+          otherClasses="min-h-[56px] sm:min-w-[170px]"
+        />
+      </div>
 
-            <section className='mt-12 flex flex-wrap gap-4'>
-                {result.users.length > 0 ? (result.users.map((user) => (
-                    <UserCard key={user._id} user={user} />
-                ))) : (
-                    <div className='paragraph-regular text-dark200_light800 mx-auto max-w-4xl text-center'>
-                        <p>No User Yet</p>
-                        <Link href={"/sign-up"} className='mt-2 font-bold text-accent-blue '>Join To Be The First</Link>
-                    </div>)}
-            </section>
-        </>
+      <section className="mt-12 flex flex-wrap gap-4">
+        {result.users.length > 0 ? (
+          result.users.map((user) => 
+            <Link href={`/users/${user._id}`} key={user._id}>
+          <article> {/* Ensure <article> is nested within <Link> */}
+            <UserCard user={user} />
+          </article>
+        </Link>
+          )
+        ) : (
+          <div className="paragraph-regular text-dark200_light800 mx-auto max-w-4xl text-center">
+            <p>No User Yet</p>
+          </div>
+        )}
+      </section>
+    </>
+  );
+};
 
-
-    )
-}
-
-export default CommunityPage
+export default CommunityPage;
