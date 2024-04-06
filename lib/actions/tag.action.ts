@@ -24,7 +24,9 @@ export async function getTopInteractedTags(params:GetTopInteractedTagsParams){
 export async function getAllTags(params:GetAllTagsParams){
     try {
         connectToDatabase();
-       const tags = await Tag.find({});
+       const tags = await Tag.find({}); 
+       console.log("action db ",tags);
+       
        return {tags};
     }
      catch (error) {

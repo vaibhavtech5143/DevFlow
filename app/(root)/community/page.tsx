@@ -9,7 +9,7 @@ const CommunityPage = async () => {
   const result = await getAllUsers({});
 
   return (
-    <>
+    <main>
       <h1 className="h1-bold text-dark100_light900">All Users</h1>
 
       <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
@@ -27,22 +27,20 @@ const CommunityPage = async () => {
         />
       </div>
 
-      <section className="mt-12 flex flex-wrap gap-4">
-        {result.users.length > 0 ? (
-          result.users.map((user) => 
+      <main className="mt-12 flex flex-wrap gap-4">
+        {result && result.users.length > 0 ? (
+          result.users.map((user) => (
             <Link href={`/users/${user._id}`} key={user._id}>
-          <article> {/* Ensure <article> is nested within <Link> */}
-            <UserCard user={user} />
-          </article>
-        </Link>
-          )
+              <UserCard user={user} />
+            </Link>
+          ))
         ) : (
-          <div className="paragraph-regular text-dark200_light800 mx-auto max-w-4xl text-center">
+          <section className="paragraph-regular text-dark200_light800 mx-auto max-w-4xl text-center">
             <p>No User Yet</p>
-          </div>
+          </section>
         )}
-      </section>
-    </>
+      </main>
+    </main>
   );
 };
 
