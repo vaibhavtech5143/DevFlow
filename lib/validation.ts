@@ -5,3 +5,9 @@ title:z.string().min(5).max(135),
 explanation:z.string(),
 tags:z.array(z.string().min(1).max(20)).min(1).max(3),
 })
+
+export const AnswerSchema = z.object({
+    answer:z.string().min(100)
+
+
+})

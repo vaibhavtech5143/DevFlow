@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import React from "react";
 import "./globals.css";
+import "../styles/prism.css";
+
 import { ClerkProvider } from "@clerk/nextjs";
 // eslint-disable-next-line camelcase
 import { Inter, Space_Grotesk } from "next/font/google";
@@ -30,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }> ) {
   return (
-    <html lang="en"  suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${spaceGrotesk.variable}  custom-scrollbar`}>
         <ClerkProvider
           appearance={{
