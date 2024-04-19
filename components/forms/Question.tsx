@@ -21,6 +21,7 @@ import { QuestionSchema } from "@/lib/validation"
 import { Badge } from '../ui/badge';
 import Image from 'next/image';
 import { createQuestion } from '@/lib/actions/question.action';
+import { useTheme } from '@/context/ThemeProvider';
 
 interface Props{
   mongoUserId:string;
@@ -31,6 +32,9 @@ const type: string = "create";
 
 // component  starts here 
 const Question = ({mongoUserId}:Props) => {
+
+
+  const {mode} = useTheme();
   const router = useRouter();
   const pathname = usePathname();
   const editorRef = useRef<Editor>(null);
@@ -160,7 +164,9 @@ const Question = ({mongoUserId}:Props) => {
             toolbar: 'undo redo |' +
               'codesample | bold italic forecolor | alignleft aligncenter | codesample ' +
               'alignright alignjustify | bullist numlist ',
-            content_style: 'body { font-family:Inter,Arial;font-size:16px }'
+            content_style: 'body { font-family:Inter,Arial;font-size:16px }',
+            skin: mode === "dark" ? "oxide-dark" :"oxide",
+            content_css: mode === "dark" ? "dark" :"light"
           }}
         />
       </FormControl>

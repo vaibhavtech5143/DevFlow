@@ -28,11 +28,11 @@ const Page = async ({ params }) => {
                             height={22}
                             alt='user profile picture'
                         />
-                        <p className=' flex-start paragraph-semibold text-dark300_light700'
+                        <p className=' flex-start paragraph-semibold text-dark400_light900'
                         >{result.question.author.name}</p>
                     </Link>
 
-                    <div className="flex justify-end">
+                    <div className="text-dark300_light700 flex  justify-end">
 
                 VOTING
                     </div>
@@ -53,7 +53,7 @@ const Page = async ({ params }) => {
         alt="message"
         value={formatLargeNumber(result.question.answers.length)} 
         title="Answers"
-        textStyles="small-medium text-dark400_light800" href={undefined} isAuthor={undefined}        />
+        textStyles="small-medium text-dark200_light900" href={undefined} isAuthor={undefined}        />
         <Metric imgUrl="/assets/icons/eye.svg"
         alt="eye"
         value={formatLargeNumber(result.question.views)}

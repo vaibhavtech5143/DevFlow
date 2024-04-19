@@ -39,7 +39,7 @@ Prism.highlightAll();
 
   },[])
   return (
-    <div>
+    <div className='text-dark300_light700'>
 
 {parse(data)}
 
