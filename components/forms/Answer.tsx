@@ -27,7 +27,7 @@ const Answer = () => {
     }
   )
 
-  const handleCreateAnswer = (data) => {
+  const handleCreateAnswer = (data:any) => {
 
   }
   return (
