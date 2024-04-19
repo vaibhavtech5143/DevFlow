@@ -8,7 +8,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-const Page = async ({  params:any  }) => {
+
+type Params = {
+    id: string;
+  };
+const Page = async({ params }: { params: Params })=> {
 
     const result = await getQuestionById({ questionId: params.id });
     return (
